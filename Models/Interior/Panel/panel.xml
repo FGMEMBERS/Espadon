@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>panel.ac</path>
+
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>panel</object-name>
+
+    <!-- Objets transparents -->
+  </animation>
+ 
+  <!-- MFD -->
+  <model>
+    <path>Aircraft/Espadon/Models/Interior/Panel/Instruments/mfd1/mfd1.xml</path>
+    <offsets>
+      <x-m> 0.012 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.015 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+</PropertyList>
+

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>espadon.ac</path>
+
+  <nasal>
+    <load>
+      var livery_update = aircraft.livery_update.new("Aircraft/Espadon/Models/Liveries", 10);
+
+      var self = cmdarg();
+
+      var float_0 = self.getNode("sim/multiplay/generic/float[0]", 1);
+      var float_1 = self.getNode("sim/multiplay/generic/float[1]", 1);
+      
+      var crew_door = self.getNode("instrumentation/doors/crew/position-norm", 1);
+      var passenger_door = self.getNode("instrumentation/doors/passenger/position-norm", 1);
+    
+      crew_door.alias(float_0);
+      passenger_door.alias(float_1);
+    </load>
+
+    <unload>
+      livery_update.stop();
+      crew_door.unalias();
+      passenger_door.unalias();
+    </unload>
+  </nasal>
+
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>fuselage</object-name>
+    <object-name>ailes</object-name>
+    <object-name>aileronG</object-name>
+    <object-name>aileronD</object-name>
+    <object-name>voletG</object-name>
+    <object-name>voletD</object-name>
+    <object-name>ailes2</object-name>
+    <object-name>profondeur</object-name>
+    <object-name>derive</object-name>
+    <object-name>direction</object-name>
+
+    <object-name>roueA</object-name>
+    <object-name>roueG</object-name>
+    <object-name>roueD</object-name>
+    <object-name>trous</object-name>
+
+    <!-- Objets transparents -->
+    <object-name>vitres</object-name>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>fuselage</object-name>
+    <object-name>ailes</object-name>
+    <object-name>aileronG</object-name>
+    <object-name>aileronD</object-name>
+    <object-name>voletG</object-name>
+    <object-name>voletD</object-name>
+    <object-name>ailes2</object-name>
+    <object-name>profondeur</object-name>
+    <object-name>derive</object-name>
+    <object-name>direction</object-name>
+
+    <object-name>roueA</object-name>
+    <object-name>roueG</object-name>
+    <object-name>roueD</object-name>
+    <object-name>trous</object-name>
+
+
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>texture</texture-prop>
+    <texture>texture.png</texture>
+<!--
+    <diffuse>
+      <red-prop>diffuse/red</red-prop>
+      <green-prop>diffuse/green</green-prop>
+      <blue-prop>diffuse/blue</blue-prop>
+    </diffuse>
+
+    <ambient>
+      <red-prop>ambient/red</red-prop>
+      <green-prop>ambient/green</green-prop>
+      <blue-prop>ambient/blue</blue-prop>
+    </ambient>
+-->
+    <specular>
+      <red-prop>specular/red</red-prop>
+      <green-prop>specular/green</green-prop>
+      <blue-prop>specular/blue</blue-prop>
+    </specular>
+
+    <emission>
+      <red-prop>emission/red</red-prop>
+      <green-prop>emission/green</green-prop>
+      <blue-prop>emission/blue</blue-prop>
+    </emission>
+<!--
+    <shininess>
+      <shininess-prop>shininess</shininess-prop>
+    </shininess>
+-->
+  </animation>
+
+  <effect>
+    <inherits-from>Aircraft/Generic/Effects/Fuselagereflect</inherits-from>
+    <object-name>fuselage</object-name>
+    <object-name>ailes</object-name>
+    <object-name>aileronG</object-name>
+    <object-name>aileronD</object-name>
+    <object-name>voletG</object-name>
+    <object-name>voletD</object-name>
+    <object-name>ailes2</object-name>
+    <object-name>profondeur</object-name>
+    <object-name>derive</object-name>
+    <object-name>direction</object-name>
+  </effect>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>Aircraft/Generic/Effects/glass_shader.png</texture>
+    <object-name>vitres</object-name>
+  </animation>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>vitres</object-name>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>roueA</object-name>
+    <object-name>roueG</object-name>
+    <object-name>roueD</object-name>
+    <condition>
+      <not>
+        <equals>
+          <property>gear/gear[0]/position-norm</property>
+          <value> 0 </value>
+        </equals>
+      </not>
+    </condition>
+  </animation>
+
+  <!-- Effets sur le sol -->
+  <!-- Roue avant -->
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/ground/ground0.xml</path>
+    <offsets>
+      <x-m> -0.040 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -1.897 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Roue gauche -->
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/ground/ground1.xml</path>
+    <offsets>
+      <x-m>  4.905 </x-m>
+      <y-m> -1.184 </y-m>
+      <z-m> -1.932 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Roue de droite -->
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/ground/ground2.xml</path>   
+    <offsets>
+      <x-m>  4.905 </x-m>
+      <y-m>  1.184 </y-m>
+      <z-m> -1.932 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Flamme -->
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/flammes/flamme.xml</path>
+    <offsets>
+      <x-m> 9.305 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.176 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/smoke/smoke.xml</path>
+    <offsets>
+      <x-m> 9.305 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.176 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Trail -->
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/trail/trail.xml</path>
+    <offsets>
+      <x-m> 9.305 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.176 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Tiptrail -->
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>  5.227 </x-m>
+      <y-m> -3.799 </y-m>
+      <z-m>  1.715 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Espadon/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m> 5.227 </x-m>
+      <y-m> 3.799 </y-m>
+      <z-m> 1.715 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Intérieur -->
+  <model>
+    <path>Aircraft/Espadon/Models/Interior/interior.xml</path>
+    <offsets>
+      <x-m> 0 </x-m>
+      <y-m> 0 </y-m>
+      <z-m> 0 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- Gouverne de profondeur -->
+  <animation>
+    <type>rotate</type>
+    <object-name>profondeur</object-name>
+    <property>surface-positions/elevator-pos-norm</property>
+    <factor> 15 </factor>
+    <center>
+      <x-m> 8.772 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.176 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <!-- Gouverne de direction -->
+  <animation>
+    <type>rotate</type>
+    <object-name>direction</object-name>
+    <property>surface-positions/rudder-pos-norm</property>
+    <factor> -15 </factor>
+    <center>
+      <x-m> 8.772 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.176 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+
+  <!-- Animations des ailerons -->
+  <animation>
+    <type>rotate</type>
+    <object-name>aileronG</object-name>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <factor> 15 </factor>
+    <axis>
+      <x1-m>  5.089 </x1-m>
+      <y1-m> -3.370 </y1-m>
+      <z1-m>  1.610 </z1-m>
+      <x2-m>  5.091 </x2-m>
+      <y2-m> -2.392 </y2-m>
+      <z2-m>  1.386 </z2-m>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>aileronD</object-name>
+    <property>surface-positions/right-aileron-pos-norm</property>
+    <factor> 15 </factor>
+    <axis>
+      <x1-m> 5.091 </x1-m>
+      <y1-m> 2.392 </y1-m>
+      <z1-m> 1.386 </z1-m>
+      <x2-m> 5.089 </x2-m>
+      <y2-m> 3.370 </y2-m>
+      <z2-m> 1.610 </z2-m>
+    </axis>
+  </animation>
+
+  <!-- Volets -->
+  <animation>
+    <type>rotate</type>
+    <object-name>voletG</object-name>
+    <property>surface-positions/flaps-pos-norm</property>
+    <factor> 50 </factor>
+    <axis>
+      <x1-m>  4.964 </x1-m>
+      <y1-m> -2.392 </y1-m>
+      <z1-m>  1.361 </z1-m>
+      <x2-m>  4.964 </x2-m>
+      <y2-m> -0.665 </y2-m>
+      <z2-m>  0.959 </z2-m>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>voletD</object-name>
+    <property>surface-positions/flaps-pos-norm</property>
+    <factor> 50 </factor>
+    <axis>
+      <x1-m> 4.964 </x1-m>
+      <y1-m> 0.665 </y1-m>
+      <z1-m> 0.959 </z1-m>
+      <x2-m> 4.964 </x2-m>
+      <y2-m> 2.392 </y2-m>
+      <z2-m> 1.361 </z2-m>
+    </axis>
+  </animation>
+
+  <!-- Rotation de la roue avant en fonction de la gouverne de direction -->
+  <animation>
+    <type>rotate</type>
+    <object-name>roueA</object-name>
+    <property>surface-positions/rudder-pos-norm</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m> -0.040 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -1.622 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+
+  <!-- Rotation des roues lors du roulage -->
+  <animation>
+    <type>spin</type>
+    <object-name>roueA</object-name>
+    <property>gear/gear[0]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m> -0.040 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -1.622 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>roueG</object-name>
+    <property>gear/gear[1]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m>  4.905 </x-m>
+      <y-m> -1.184 </y-m>
+      <z-m> -1.532 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>roueD</object-name>
+    <property>gear/gear[2]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m>  4.905 </x-m>
+      <y-m>  1.184 </y-m>
+      <z-m> -1.532 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+  <!-- Ajout des effets lumineux -->
+  <model>
+    <path>Aircraft/Espadon/Models/lights/beacon.xml</path>
+    <offsets>
+      <x-m> 8.939 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 2.089 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Espadon/Models/lights/beacon.xml</path>
+    <offsets>
+      <x-m>  3.697 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -0.729 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Espadon/Models/lights/RedLight.xml</path>
+    <offsets>
+      <x-m>  5.213 </x-m>
+      <y-m> -3.789 </y-m>
+      <z-m>  1.715 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Espadon/Models/lights/GreenLight.xml</path>
+    <offsets>
+      <x-m> 5.213 </x-m>
+      <y-m> 3.789 </y-m>
+      <z-m> 1.715 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Espadon/Models/lights/StrobeWhite.xml</path>
+    <offsets>
+      <x-m>  5.218 </x-m>
+      <y-m> -3.789 </y-m>
+      <z-m>  1.715 </z-m>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/Espadon/Models/lights/StrobeWhite.xml</path>
+    <offsets>
+      <x-m> 5.218 </x-m>
+      <y-m> 3.789 </y-m>
+      <z-m> 1.715 </z-m>
+    </offsets>
+  </model>
+
+</PropertyList>
+

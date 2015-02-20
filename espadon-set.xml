@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <PropertyList include="espadon-jsbsim-cnf.xml"> -->
+<PropertyList include="espadon-yasim-cnf.xml">
+
+  <sim>
+    <description>Espadon SX 1 (YASim)</description>
+    <author>BARANGER Emmanuel (3D)</author>
+  </sim>
+
+</PropertyList>
+
